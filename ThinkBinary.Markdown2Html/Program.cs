@@ -43,12 +43,10 @@ namespace ThinkBinary.Markdown2Html
 					return ReturnCodes.ApplicationFailure;
 				}
 			}
-			else
-			{
-				Console.WriteLine("Not all minimum settings were specified\n");
-				ShowHelp(options);
-				return ReturnCodes.IncorrectSettings;
-			}
+			
+			Console.WriteLine("Not all minimum settings were specified\n");
+			ShowHelp(options);
+			return ReturnCodes.IncorrectSettings;
 		}
 
 		private static bool MinimumSettingsSpecified()
@@ -75,7 +73,7 @@ namespace ThinkBinary.Markdown2Html
 					       {"n|normalize", "Embed Normalize.css to output HTML document", n => Settings.AddNormalizeCss = n != null},
 					       {"i|input=", "Input file name", i => Settings.InputFile = i},
 					       {"o|output=", "Output file name", o => Settings.OutputFile = o},
-						   {"css", "Custom css file to embed", css => Settings.CustomCssFile = css}
+						   {"css=", "Custom css file to embed", css => Settings.CustomCssFile = css}
 				       };
 		}
 	}
