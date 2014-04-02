@@ -23,11 +23,11 @@ namespace ThinkBinary.Markdown2Html
 		{
 			var markdownText = File.ReadAllText(_settings.InputFile);
 			var htmlText = _markdown.Transform(markdownText);
-			var customCss = @".container { margin: 0 auto; min-width: 500px;max-width: 950px; }";
-			if (_settings.CustomCssFile != null)
-			{
-				customCss = File.ReadAllText(_settings.CustomCssFile);
-			}
+
+			var customCss = string.IsNullOrWhiteSpace(_settings.CustomCssFile)
+				? @".container { margin: 0 auto; min-width: 500px;max-width: 950px; }"
+				: File.ReadAllText(_settings.CustomCssFile);
+				
 
 			// ReSharper disable AssignNullToNotNullAttribute
 			var template = new StreamReader( _assembly.GetManifestResourceStream(TemplateFile)).ReadToEnd();
